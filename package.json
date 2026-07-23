@@ -1,17 +1,26 @@
 {
-  "dependencies": {
-    "express": "^5.2.1",
-    "uv": "^1.4.0"
-  },
-  "name": "ejemplos-js",
+  "name": "intro_express_3407184",
   "version": "1.0.0",
-  "description": "",
+  "description": "introducción a express con el instructor Jhonny",
+  "keywords": [],
+  "homepage": "https://github.com/snietocol-14/proyecto-js#readme",
+  "bugs": {
+    "url": "https://github.com/snietocol-14/proyecto-js/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/snietocol-14/proyecto-js.git"
+  },
+  "license": "ISC",
+  "author": "snietocol-14",
+  "type": "module",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "module"
+  "dependencies": {
+    "express": "^5.2.1",
+    "uv": "^1.4.0"
+  },
+  "devDependencies": {}
 }
