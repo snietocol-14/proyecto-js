@@ -1,14 +1,16 @@
 import express from "express"
 import "dotenv/config"
+import cors from "cors"
 //const bodyParser = require('body-parser');//importacion commonjs
 import bodyParser from "body-parser";//importacion ES "module"
 
 const app = express();  
 const port = process.env.PORT || 3000;
-
+app.use(cors())
 //configurar el uso de body-parse para nuestra aplicacion - no lo estmos utilizando
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
+
 
 app.get("/", function(req, res){
     res.send("Hola, estamos aprendiendo express con la ficha 3407184")
@@ -54,7 +56,7 @@ app.get("/saludo/:nombre", (req, res)=>{
 app.get("/productos/:categoria/:id", (req, res) => {
     const categoria = req.params.categoria
     const id = req.params.id
-    const nombreServidor = "Super Servidor (no sé qué poner)"
+    const nombreServidor = "Super Servidor"
     res.json({
         categoria: categoria,
         id: id,
@@ -69,9 +71,9 @@ app.get("/usuarios/:id/posts", (req, res) => {
     const idUsuario = req.params.id
     const orden = req.query.orden 
     let posts = [
-        { id: 3, titulo: "post 1" },
-        { id: 1, titulo: "post 2" },
-        { id: 2, titulo: "post 3" }
+        { id: 3, titulo: "post divertido" },
+        { id: 1, titulo: "post simple" },
+        { id: 2, titulo: "post feliz" }
     ]
 
     if (orden === "asc") {
