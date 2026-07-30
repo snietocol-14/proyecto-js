@@ -1,37 +1,52 @@
 import express from "express"
 import "dotenv/config"
+//const bodyParser = require('body-parser');//importacion commonjs
+import bodyParser from "body-parser";//importacion ES "module"
 
-const app = express();
+const app = express();  
 const port = process.env.PORT || 3000;
 
-app.get("/", (_, res) => {
-    res.send("Hola , estamos aprendiendo express con la ficha 3407184");
-});
+//configurar el uso de body-parse para nuestra aplicacion - no lo estmos utilizando
+app.use(express.json())
+app.use(express.urlencoded({extended: true}))
 
-app.listen(port, () => {
-    console.log(`Servidor en funcionamiento en el puerto ${port}`);
-}); 
+app.get("/", function(req, res){
+    res.send("Hola, estamos aprendiendo express con la ficha 3407184")
+})
 
-app.get("/saludo/:nombre", (req,res) => {
-            const minombre = req.params. nombre
-            res.send ("mostrar sms")
-    });
+//otro endpoint, funcion de flecha
+app.get("/productos", (req, res)=>{
+    //usando template string ``
+    res.send(`<h1>Listado de productos</h1>
+        <ol>
+        <li>Televisor</li>
+        <li>Celular</li>
+        <li>Impresora</li>
+        </ol>`)
+})
 
-//1. productos /: categoria
-//2. productos /: categoria /: Id
-//3. libros /: isbn
+app.listen(port, function(){
+    console.log(`Servidor funcionando en el puerto ${port}`)
+})
 
-app.get("/producto/:categoria", (req,res) => {
-            const minombre = req.params. categoria
-            res.send ("mostrar sms")
-        });
 
-app.get("/producto/:categoria", (req,res) => {
-            const minombre = req.params. id
-            res.send ("mostrar sms")
-        });
 
-app.get("/libro/:isbn", (req,res) => {
-            const minombre = req.params. isbn
-            res.send ("mostrar sms")
-        });
+// app.get("/saludo/:nombre", (req,res) => {
+//             const minombre = req.params. nombre
+//             res.send ("mostrar sms")
+//     });
+
+// app.get("/producto/:categoria", (req,res) => {
+//             const minombre = req.params. categoria
+//             res.send ("mostrar sms")
+//         });
+
+// app.get("/producto/:categoria", (req,res) => {
+//             const minombre = req.params. id
+//             res.send ("mostrar sms")
+//         });
+
+// app.get("/libro/:isbn", (req,res) => {
+//             const minombre = req.params. isbn
+//             res.send ("mostrar sms")
+//         });
