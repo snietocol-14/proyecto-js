@@ -25,11 +25,19 @@ app.get("/productos", (req, res)=>{
         </ol>`)
 })
 
+app.get("/productos/:nombre", (req, res)=>{
+    const producto = req.params.nombre
+    res.send(`El producto es ${producto}`)
+})
+
 app.listen(port, function(){
     console.log(`Servidor funcionando en el puerto ${port}`)
 })
 
-
+app.get("/saludo/:nombre", (req, res)=>{
+    const nombre = req.params.nombre
+    res.send(`Hola, ${nombre}. Bienvenido`)
+})
 
 // app.get("/saludo/:nombre", (req,res) => {
 //             const minombre = req.params. nombre
