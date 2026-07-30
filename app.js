@@ -27,7 +27,14 @@ app.get("/productos", (req, res)=>{
 
 app.get("/productos/:nombre", (req, res)=>{
     const producto = req.params.nombre
-    res.send(`El producto es ${producto}`)
+    // res.send(`Producto: ${producto}`)
+    res.json({
+        "id":1,
+        "producto":producto,
+        "cantidad":1,
+        "precio":1000,
+        "categoria":"Lácteos"
+    })
 })
 
 app.listen(port, function(){
