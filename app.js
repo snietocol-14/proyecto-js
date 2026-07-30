@@ -17,7 +17,9 @@ app.get("/", function(req, res){
 //otro endpoint, funcion de flecha
 app.get("/productos", (req, res)=>{
     //usando template string ``
-    res.send(`<h1>Listado de productos</h1>
+    const orden = req.query.orden || "sin orden"
+    const pagina = req.query.pagina || 1
+    res.send(`<h1>Listado de productos en orden ${orden} en la pagina ${pagina}</h1>
         <ol>
         <li>Televisor</li>
         <li>Celular</li>
@@ -47,6 +49,42 @@ app.get("/saludo/:nombre", (req, res)=>{
         return res.status(400).json({Error: "El nombre debe tener al menos tres letras"})
     }
     res.send(`Hola, ${nombre}. Bienvenid@`)
+})
+
+app.get("/productos/:categoria/:id", (req, res) => {
+    const categoria = req.params.categoria
+    const id = req.params.id
+    const nombreServidor = "Super Servidor (no sé qué poner)"
+    res.json({
+        categoria: categoria,
+        id: id,
+        servidor: nombreServidor
+    })
+})
+
+// app.get("/usuarios/:id/posts", (req, res) => {
+//     const id = req.params.id
+
+app.get("/usuarios/:id/posts", (req, res) => {
+    const idUsuario = req.params.id
+    const orden = req.query.orden 
+    let posts = [
+        { id: 3, titulo: "post 1" },
+        { id: 1, titulo: "post 2" },
+        { id: 2, titulo: "post 3" }
+    ]
+
+    if (orden === "asc") {
+        posts.sort((a, b) => a.id - b.id)
+    } else if (orden === "desc") {
+        posts.sort((a, b) => b.id - a.id)
+    }
+
+    res.json({
+        usuario: idUsuario,
+        orden: orden,
+        posts: posts
+    })
 })
 
 // app.get("/saludo/:nombre", (req,res) => {
