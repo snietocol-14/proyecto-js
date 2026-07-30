@@ -36,7 +36,10 @@ app.listen(port, function(){
 
 app.get("/saludo/:nombre", (req, res)=>{
     const nombre = req.params.nombre
-    res.send(`Hola, ${nombre}. Bienvenido`)
+    if (nombre.length < 3) {
+        return res.status(400).json({Error: "El nombre debe tener al menos tres letras"})
+    }
+    res.send(`Hola, ${nombre}. Bienvenid@`)
 })
 
 // app.get("/saludo/:nombre", (req,res) => {
